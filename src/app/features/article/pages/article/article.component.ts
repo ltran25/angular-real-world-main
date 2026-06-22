@@ -90,8 +90,10 @@ export default class ArticleComponent implements OnInit {
 
     if (favorited) {
       this.article.favoritesCount++;
+      console.log(`Article favorited: "${this.article.slug}" (total: ${this.article.favoritesCount})`);
     } else {
       this.article.favoritesCount--;
+      console.log(`Article unfavorited: "${this.article.slug}" (total: ${this.article.favoritesCount})`);
     }
   }
 
