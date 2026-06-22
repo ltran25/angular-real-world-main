@@ -29,6 +29,7 @@ export default class ProfileFavoritesComponent implements OnInit {
       .subscribe({
         next: (profile: Profile) => {
           this.profile = profile;
+          console.log('Favorited by:', this.profile.username);
           this.favoritesConfig = {
             type: "all",
             filters: {
