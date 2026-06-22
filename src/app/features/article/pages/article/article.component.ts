@@ -93,6 +93,7 @@ export default class ArticleComponent implements OnInit {
     } else {
       this.article.favoritesCount--;
     }
+    console.log(`Article "${this.article.title}" (${this.article.slug}) ${favorited ? 'favorited' : 'unfavorited'}. Total favorites: ${this.article.favoritesCount}`);
   }
 
   toggleFollowing(profile: Profile): void {

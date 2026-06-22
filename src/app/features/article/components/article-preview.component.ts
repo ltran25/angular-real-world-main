@@ -44,8 +44,10 @@ export class ArticlePreviewComponent {
 
     if (favorited) {
       this.article.favoritesCount++;
+      console.log(`Article "${this.article.title}" was favorited. Total favorites: ${this.article.favoritesCount}`);
     } else {
       this.article.favoritesCount--;
+      console.log(`Article "${this.article.title}" was unfavorited. Total favorites: ${this.article.favoritesCount}`);
     }
   }
 }
