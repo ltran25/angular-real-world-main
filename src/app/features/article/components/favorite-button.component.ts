@@ -67,6 +67,7 @@ export class FavoriteButtonComponent {
       .subscribe({
         next: () => {
           this.isSubmitting = false;
+          console.log(`Article ${this.article.favorited ? "unfavorited" : "favorited"}: ${this.article.slug}`);
           this.toggle.emit(!this.article.favorited);
         },
         error: () => (this.isSubmitting = false),
