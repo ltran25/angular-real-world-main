@@ -47,5 +47,7 @@ export class ArticlePreviewComponent {
     } else {
       this.article.favoritesCount--;
     }
+    
+    console.log(`Article "${this.article.slug}" ${favorited ? 'favorited' : 'unfavorited'}. Favorites count: ${this.article.favoritesCount}`);
   }
 }
