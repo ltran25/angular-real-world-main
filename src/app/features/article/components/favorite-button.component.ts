@@ -47,18 +47,24 @@ export class FavoriteButtonComponent {
 
   toggleFavorite(): void {
     this.isSubmitting = true;
+    
+    // Log the favorite action being initiated
+    console.log(`Toggle favorite for article: ${this.article.slug}, current state: ${this.article.favorited ? 'favorited' : 'not favorited'}`);
 
     this.userService.isAuthenticated
       .pipe(
         switchMap((authenticated) => {
           if (!authenticated) {
+            console.log('User not authenticated, redirecting to register');
             void this.router.navigate(["/register"]);
             return EMPTY;
           }
 
           if (!this.article.favorited) {
+            console.log(`Calling favorite for: ${this.article.slug}`);
             return this.articleService.favorite(this.article.slug);
           } else {
+            console.log(`Calling unfavorite for: ${this.article.slug}`);
             return this.articleService.unfavorite(this.article.slug);
           }
         }),
@@ -67,9 +73,13 @@ export class FavoriteButtonComponent {
       .subscribe({
         next: () => {
           this.isSubmitting = false;
+          console.log(`Successfully ${!this.article.favorited ? 'favorited' : 'unfavorited'} article: ${this.article.slug}`);
           this.toggle.emit(!this.article.favorited);
         },
-        error: () => (this.isSubmitting = false),
+        error: (err) => {
+          console.error(`Failed to toggle favorite for ${this.article.slug}:`, err);
+          this.isSubmitting = false;
+        },
       });
   }
 }
