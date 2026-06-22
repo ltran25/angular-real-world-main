@@ -57,8 +57,10 @@ export class FavoriteButtonComponent {
           }
 
           if (!this.article.favorited) {
+            console.log('Favoriting article:', this.article.slug);
             return this.articleService.favorite(this.article.slug);
           } else {
+            console.log('Unfavoriting article:', this.article.slug);
             return this.articleService.unfavorite(this.article.slug);
           }
         }),
@@ -67,6 +69,7 @@ export class FavoriteButtonComponent {
       .subscribe({
         next: () => {
           this.isSubmitting = false;
+          console.log(`Article ${this.article.slug} ${!this.article.favorited ? 'favorited' : 'unfavorited'} successfully`);
           this.toggle.emit(!this.article.favorited);
         },
         error: () => (this.isSubmitting = false),
