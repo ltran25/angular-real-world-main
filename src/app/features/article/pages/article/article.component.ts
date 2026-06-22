@@ -87,6 +87,8 @@ export default class ArticleComponent implements OnInit {
 
   onToggleFavorite(favorited: boolean): void {
     this.article.favorited = favorited;
+    
+    console.log(`Article "${this.article.title}" ${favorited ? 'favorited' : 'unfavorited'}`);
 
     if (favorited) {
       this.article.favoritesCount++;
