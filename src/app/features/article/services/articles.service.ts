@@ -51,12 +51,14 @@ export class ArticlesService {
   }
 
   favorite(slug: string): Observable<Article> {
+    console.log("Favoriting article:", slug);
     return this.http
       .post<{ article: Article }>(`/articles/${slug}/favorite`, {})
       .pipe(map((data) => data.article));
   }
 
   unfavorite(slug: string): Observable<void> {
+    console.log("Unfavoriting article:", slug);
     return this.http.delete<void>(`/articles/${slug}/favorite`);
   }
 }

@@ -40,6 +40,7 @@ export class ArticlePreviewComponent {
   @Input() article!: Article;
 
   toggleFavorite(favorited: boolean): void {
+    console.log(`Article '${this.article.slug}' ${favorited ? 'favorited' : 'unfavorited'}`);
     this.article.favorited = favorited;
 
     if (favorited) {
