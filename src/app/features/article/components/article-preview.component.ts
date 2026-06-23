@@ -4,6 +4,7 @@ import { ArticleMetaComponent } from "./article-meta.component";
 import { RouterLink } from "@angular/router";
 import { NgForOf } from "@angular/common";
 import { FavoriteButtonComponent } from "./favorite-button.component";
+import { IfAuthenticatedDirective } from "../../../core/auth/if-authenticated.directive";
 
 @Component({
   selector: "app-article-preview",
@@ -11,6 +12,7 @@ import { FavoriteButtonComponent } from "./favorite-button.component";
     <div class="article-preview">
       <app-article-meta [article]="article">
         <app-favorite-button
+          *ifAuthenticated="true"
           [article]="article"
           (toggle)="toggleFavorite($event)"
           class="pull-xs-right"
@@ -33,7 +35,13 @@ import { FavoriteButtonComponent } from "./favorite-button.component";
       </a>
     </div>
   `,
-  imports: [ArticleMetaComponent, FavoriteButtonComponent, RouterLink, NgForOf],
+  imports: [
+    ArticleMetaComponent,
+    FavoriteButtonComponent,
+    RouterLink,
+    NgForOf,
+    IfAuthenticatedDirective
+  ],
   standalone: true,
 })
 export class ArticlePreviewComponent {
